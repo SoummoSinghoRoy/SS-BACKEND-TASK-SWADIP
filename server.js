@@ -4,6 +4,12 @@ const app = express();
 const config = require('config');
 const mongoose = require('mongoose');
 
+const setMiddlewares = require('./middleware/middleware');
+const setRoutes = require('./routes/route');
+
+setMiddlewares(app)
+setRoutes(app)
+
 const PORT = process.env.PORT || 6060
 
 mongoose.set("strictQuery", false);
