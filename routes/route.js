@@ -1,7 +1,12 @@
 const authRoute = require('./authRoute');
 const movieRoute = require('./movieRoute');
+const tvShowRoute = require('./tvShowRoute');
 
 const routes = [
+  {
+    path: '/api/tvShows',
+    handler: tvShowRoute
+  },
   {
     path: '/api/movie',
     handler: movieRoute

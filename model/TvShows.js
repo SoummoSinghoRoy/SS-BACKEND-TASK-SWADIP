@@ -27,7 +27,7 @@ const TvShowSchema = new Schema({
     required: true,
     trim: true
   },
-  release_date: {
+  releaseDate: {
     type: Date,
     required: true
   },

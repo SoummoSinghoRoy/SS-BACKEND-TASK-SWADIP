@@ -1,29 +1,28 @@
 const { validationResult } = require('express-validator');
 const fs = require('fs');
 
-const Movie = require('../model/Movie');
+const TvShows = require('../model/TvShows');
 
-exports.allMovieGetController = async (req, res) => {
+exports.allTvShowGetController = async (req, res) => {
   const { page, limit } = req.query;
   const currentPage = parseInt(page) || 1;
   const itemperpage = parseInt(limit) || 10;
   const skip = (currentPage - 1) * itemperpage;
   try {
-    const allmovies = await Movie.find().skip(skip).limit(itemperpage)
-    const totalMovies = await Movie.countDocuments()
-    const movies = allmovies.reverse()
-
-    if(allmovies.length !== 0) {
+    const allTvShow = await TvShows.find().skip(skip).limit(itemperpage)
+    const totalTvShows = await TvShows.countDocuments()
+    const tvShows = allTvShow.reverse()
+    if(allTvShow.length !== 0) {
       res.status(200).json({
-        movies,
-        totalMovies,
+        tvShows,
+        totalTvShows,
         currentPage,
         itemperpage,
-        totalPages: totalMovies / itemperpage
+        totalPages: totalTvShows / itemperpage
       })
     } else {
       res.status(200).json({
-        movies: `Movies not found`
+        shows: `Shows not found`
       })
     }
   } catch (error) {
@@ -34,7 +33,7 @@ exports.allMovieGetController = async (req, res) => {
   }
 }
 
-exports.createMoviePostController = async (req, res) => {
+exports.createTvShowPostController = async (req, res) => {
   const { title, actor, actress, director, producer, releaseDate, duration, detail } = req.body;
   const messages = validationResult(req).formatWith(err => err.msg)
   const errors = messages.array()
@@ -55,14 +54,14 @@ exports.createMoviePostController = async (req, res) => {
   }
   try {
     const posterUpload = `/uploads/${req.file.filename}`;
-    const newMovie = new Movie({
+    const newShow = new TvShows({
       title, actor, actress, director, producer, releaseDate, duration, detail,
       poster: posterUpload
     })
-    await newMovie.save()
+    await newShow.save()
     res.status(200).json({
-      Message: "Movie added successfull",
-      newMovie
+      Message: "Show added successfull",
+      newShow
     })
   } catch (error) {
     console.log(error);
@@ -72,17 +71,17 @@ exports.createMoviePostController = async (req, res) => {
   }
 }
 
-exports.singleMovieGetController = async (req, res) => {
-  const { movieId } = req.params;
+exports.singleTvShowGetController = async (req, res) => {
+  const { showId } = req.params;
   try {
-    const movie = await Movie.findOne({_id: movieId})
-    if(movie) {
+    const show = await TvShows.findOne({_id: showId})
+    if(show) {
       res.status(200).json({
-        movie,
+        show,
       })
     }else {
       res.status(404).json({
-        Message: "Movie not found"
+        Message: "Show not found"
       })
     }
   } catch (error) {
@@ -93,10 +92,10 @@ exports.singleMovieGetController = async (req, res) => {
   }
 }
 
-exports.movieEditPutController = async (req, res) => {
+exports.TvShowEditPutController = async (req, res) => {
   const { title, actor, actress, director, producer, releaseDate, duration, detail } = req.body;
-  const { movieId } = req.params;
-  const movie = await Movie.findOne({ _id: movieId })
+  const { showId } = req.params;
+  const show = await TvShows.findOne({ _id: showId })
 
   const errors = validationResult(req).formatWith(err => err.msg)
   if(!errors.isEmpty()) {
@@ -105,20 +104,20 @@ exports.movieEditPutController = async (req, res) => {
     })
   }
   try {
-    if(movie) {
+    if(show) {
       const updatedData = { title, actor, actress, director, producer, releaseDate, duration, detail }
-      const updatedMovie = await Movie.findByIdAndUpdate(
-        { _id: movie._id },
+      const updatedShow = await TvShows.findByIdAndUpdate(
+        { _id: show._id },
         { $set: updatedData },
         { new: true }
       )
       res.status(200).json({
-        msg: "Movie updated successfully",
-        updatedMovie
+        msg: "Show updated successfully",
+        updatedShow
       })
     }else {
       res.status(404).json({
-        Message: "Movie not found"
+        Message: "Show not found"
       })
     }
   } catch (error) {
@@ -129,25 +128,25 @@ exports.movieEditPutController = async (req, res) => {
   }
 }
 
-exports.movieDeleteController = async (req, res) => {
-  const { movieId } = req.params;
-  const movie = await Movie.findOne({ _id: movieId })
+exports.TvShowDeleteController = async (req, res) => {
+  const { showId } = req.params;
+  const show = await TvShows.findOne({ _id: showId })
 
   try {
-    if(movie) {
-      const deletedMovie = await Movie.findOneAndDelete({ _id: movie._id })
-      fs.unlink(`public${movie.poster}`, (err) => {
+    if(show) {
+      const deletedShow = await TvShows.findOneAndDelete({ _id: show._id })
+      fs.unlink(`public${show.poster}`, (err) => {
         if(err) {
           throw err
         }
       })
       res.status(200).json({
-        Message: "Movie successfully deleted",
-        deletedMovie
+        Message: "Showsuccessfully deleted",
+        deletedShow
       })
     }else {
       res.status(404).json({
-        Message: "Movie not found"
+        Message: "Show not found"
       })
     }
   } catch (error) {
