@@ -1,6 +1,11 @@
 const authRoute = require('./authRoute');
+const movieRoute = require('./movieRoute');
 
 const routes = [
+  {
+    path: '/api/movie',
+    handler: movieRoute
+  },
   {
     path: '/api/auth',
     handler: authRoute
