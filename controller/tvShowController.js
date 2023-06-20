@@ -3,26 +3,28 @@ const fs = require('fs');
 
 const TvShows = require('../model/TvShows');
 
-exports.allTvShowGetController = async (req, res) => {
+exports.allTvShowsGetController = async (req, res) => {
   const { page, limit } = req.query;
   const currentPage = parseInt(page) || 1;
-  const itemperpage = parseInt(limit) || 10;
-  const skip = (currentPage - 1) * itemperpage;
+  const itemsPerPage = parseInt(limit) || 10;
+  const skip = (currentPage - 1) * itemsPerPage;
+
   try {
-    const allTvShow = await TvShows.find().skip(skip).limit(itemperpage)
-    const totalTvShows = await TvShows.countDocuments()
-    const tvShows = allTvShow.reverse()
-    if(allTvShow.length !== 0) {
+    const allTvShows = await TvShows.find().skip(skip).limit(itemsPerPage)
+    const totalTvShows = await TvShows.countDocuments();
+    const tvShows = allTvShows.reverse()
+
+    if(allTvShows.length !== 0) {
       res.status(200).json({
         tvShows,
         totalTvShows,
+        itemsPerPage,
         currentPage,
-        itemperpage,
-        totalPages: totalTvShows / itemperpage
+        totalPages: totalTvShows / itemsPerPage
       })
     } else {
       res.status(200).json({
-        shows: `Shows not found`
+        tvShows: `Shows not found`
       })
     }
   } catch (error) {
@@ -33,7 +35,7 @@ exports.allTvShowGetController = async (req, res) => {
   }
 }
 
-exports.createTvShowPostController = async (req, res) => {
+exports.createTvShowsPostController = async (req, res) => {
   const { title, actor, actress, director, producer, releaseDate, duration, detail } = req.body;
   const messages = validationResult(req).formatWith(err => err.msg)
   const errors = messages.array()
@@ -54,14 +56,14 @@ exports.createTvShowPostController = async (req, res) => {
   }
   try {
     const posterUpload = `/uploads/${req.file.filename}`;
-    const newShow = new TvShows({
+    const newTvShows = new TvShows({
       title, actor, actress, director, producer, releaseDate, duration, detail,
       poster: posterUpload
     })
-    await newShow.save()
+    await newTvShows.save()
     res.status(200).json({
       Message: "Show added successfull",
-      newShow
+      newTvShows
     })
   } catch (error) {
     console.log(error);
@@ -71,7 +73,7 @@ exports.createTvShowPostController = async (req, res) => {
   }
 }
 
-exports.singleTvShowGetController = async (req, res) => {
+exports.singleTvShowsGetController = async (req, res) => {
   const { showId } = req.params;
   try {
     const show = await TvShows.findOne({_id: showId})
@@ -92,7 +94,7 @@ exports.singleTvShowGetController = async (req, res) => {
   }
 }
 
-exports.TvShowEditPutController = async (req, res) => {
+exports.tvShowEditPutController = async (req, res) => {
   const { title, actor, actress, director, producer, releaseDate, duration, detail } = req.body;
   const { showId } = req.params;
   const show = await TvShows.findOne({ _id: showId })
@@ -128,7 +130,7 @@ exports.TvShowEditPutController = async (req, res) => {
   }
 }
 
-exports.TvShowDeleteController = async (req, res) => {
+exports.tvShowDeleteController = async (req, res) => {
   const { showId } = req.params;
   const show = await TvShows.findOne({ _id: showId })
 
@@ -141,7 +143,7 @@ exports.TvShowDeleteController = async (req, res) => {
         }
       })
       res.status(200).json({
-        Message: "Showsuccessfully deleted",
+        Message: "Show successfully deleted",
         deletedShow
       })
     }else {

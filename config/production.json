@@ -1,5 +1,8 @@
 {
-  "name": "Organization/Author name ex - John Doe",
-  "email": "Organization/Author email ex - johndoe@gmail.com",
+  "name": "Swadip Prod",
+  "contact": {
+    "email": "swadipsinghoroy16@gmail.com",
+    "mobile": "019XXXXXX34"
+  },
   "mode": "production"
 }

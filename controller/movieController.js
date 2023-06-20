@@ -6,20 +6,21 @@ const Movie = require('../model/Movie');
 exports.allMovieGetController = async (req, res) => {
   const { page, limit } = req.query;
   const currentPage = parseInt(page) || 1;
-  const itemperpage = parseInt(limit) || 10;
-  const skip = (currentPage - 1) * itemperpage;
+  const itemsPerPage = parseInt(limit) || 10;
+  const skip = (currentPage - 1) * itemsPerPage;
+
   try {
-    const allmovies = await Movie.find().skip(skip).limit(itemperpage)
-    const totalMovies = await Movie.countDocuments()
+    const allmovies = await Movie.find().skip(skip).limit(itemsPerPage)
+    const totalMovies = await Movie.countDocuments();
     const movies = allmovies.reverse()
 
     if(allmovies.length !== 0) {
       res.status(200).json({
         movies,
         totalMovies,
+        itemsPerPage,
         currentPage,
-        itemperpage,
-        totalPages: totalMovies / itemperpage
+        totalPages: totalMovies / itemsPerPage
       })
     } else {
       res.status(200).json({
@@ -38,7 +39,6 @@ exports.createMoviePostController = async (req, res) => {
   const { title, actor, actress, director, producer, releaseDate, duration, detail } = req.body;
   const messages = validationResult(req).formatWith(err => err.msg)
   const errors = messages.array()
-
   if(!req.file) {
     errors.push(`Must attach a valid picture`)
     return res.status(400).json({
