@@ -3,8 +3,6 @@ const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const passport = require('./passport');
-
 const middlewares = [
   morgan('dev'),
   express.urlencoded({extended: true}),
@@ -12,7 +10,6 @@ const middlewares = [
   express.static('public'),
   cors(),
   cookieParser(),
-  passport.initialize()
 ]
 
 module.exports = (app) => {

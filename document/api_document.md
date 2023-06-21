@@ -52,7 +52,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 
 - **Endpoint: `"/api/auth/login"`**  
 - **Method:** POST
-- **Description:** Login with user account and return a `Bearer token key`. 
+- **Description:** Login with user account. 
 - **Body parameters:**
   - **email** (string, required): The email address of the user.
   - **password** (string, required): The valid password for the user account.

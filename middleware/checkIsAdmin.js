@@ -1,21 +1,11 @@
-const passport = require('./passport');
-
-const checkIsAdmin = () => (req, res, next) => {
-  passport.authenticate('jwt', { session: false }, (err, user) => {
-    if (err) {
-      return res.status(500).json({ message: '500 - Internal Server Error' });
-    }
-    if (!user) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-    if(user.role === "ADMIN") {
-      next()
-    }else{
-      return res.status(403).json({ 
-        Message: 'Forbidden' 
-      });
-    }
-  })(req, res, next)
+const checkIsAdmin = (req, res, next) => {
+  if(req.user.role === "ADMIN") {
+    next()
+  }else{
+    return res.status(403).json({ 
+      Message: 'Forbidden' 
+    });
+  }
 }
 
 module.exports = checkIsAdmin;
