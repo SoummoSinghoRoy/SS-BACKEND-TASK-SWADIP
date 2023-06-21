@@ -36,7 +36,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 
 ```
   {
-    "Message": "User created successfull",
+    "Message": "User created successfully",
     "registered_user": {
       "username": "john",
       "email": "john@example.com",
@@ -303,7 +303,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
       "director": "Vince Gilligan",
       "producer": "Vince Gilligan",
       "releaseDate": "2008-02-13T00:00:00.000Z",
-      "duration": 0.0007,
+      "duration": "0h 45m",
       "detail": "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student in order to secure his family's future.",
       "poster": "/uploads/poster-1687330744020-breaking-bad.jpg",
       "__v": 0
@@ -337,7 +337,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
     "director": "Vince Gilligan",
     "producer": "Vince Gilligan",
     "releaseDate": "2008-02-13T00:00:00.000Z",
-    "duration": 0.0007,
+    "duration": "0h 45m",
     "detail": "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student in order to secure his family's future.",
     "poster": "/uploads/poster-1687330744020-breaking-bad.jpg",
     ...

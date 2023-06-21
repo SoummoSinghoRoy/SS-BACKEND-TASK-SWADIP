@@ -22,7 +22,7 @@ exports.signupPostController = async (req, res) => {
     })
     await registered_user.save()
     res.status(200).json({
-      Message: "User created successfull",
+      Message: "User created successfully",
       registered_user
     })
   } catch (error) {
