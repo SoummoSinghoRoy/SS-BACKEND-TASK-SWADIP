@@ -74,6 +74,18 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 }
 ```
 
+> **logout**
+
+- **Endpoint: `"/api/auth/logout"`**  
+- **Method:** POST
+- **Description:** Logout from api service or server. 
+- **Example response**
+
+{
+  "Message": "Successfully logged out",
+  "Auhtorization": false
+}
+
 ### Request headers
 
 **Authorization:** `Not required`

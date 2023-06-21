@@ -65,8 +65,8 @@ exports.loginPostController = async (req, res) => {
           username: user.username,
           email: user.email,
           role: user.role
-        }, config.get('secret'), { expiresIn: "10h" })
-        res.cookie('jwt-token', token, { httpOnly: true, maxAge: 10 * 60 * 60 * 1000 });
+        }, config.get('secret'), { expiresIn: "12h" })
+        res.cookie('jwt-token', token, { httpOnly: true, expires: new Date(Date.now() + 12 * 3600000) });
         res.status(200).json({
           Message: "Successfully logged in",
           Auhtorization: true
@@ -83,4 +83,12 @@ exports.loginPostController = async (req, res) => {
       Message: '500 - Internal server error'
     })
   }
+}
+
+exports.logoutController = (req, res) => {
+  res.clearCookie('jwt-token', { httpOnly: true })
+  res.status(200).json({
+    Message: "Successfully logged out",
+    Auhtorization: false
+  })
 }

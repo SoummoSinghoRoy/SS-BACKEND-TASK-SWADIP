@@ -8,7 +8,7 @@ const isAuthenticated = (req, res, next) => {
     next()
   }else {
     res.status(403).json({
-      Message: "Invalid credentials",
+      Message: "Unauthorized",
       Authorization: false
     })
   }
