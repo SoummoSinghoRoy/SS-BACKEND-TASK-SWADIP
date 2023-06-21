@@ -62,7 +62,7 @@ exports.createTvShowsPostController = async (req, res) => {
     })
     await newTvShows.save()
     res.status(200).json({
-      Message: "Show added successfull",
+      Message: "Show added successfully",
       newTvShows
     })
   } catch (error) {

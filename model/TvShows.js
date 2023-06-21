@@ -32,19 +32,14 @@ const TvShowSchema = new Schema({
     required: true
   },
   duration: {
-    type: Number,
+    type: String,
     required: true,
-    get: (value) => {
-      const duration = moment.duration(value, 'minutes');
-      const hours = duration.hours();
-      const minutes = duration.minutes();
-
+    set: (value) => {
+      const hours = Math.floor(value / 60);
+      const minutes = value % 60;
+  
       return `${hours}h ${minutes}m`;
     },
-    set: (value) => {
-      const duration = moment.duration(value);
-      return duration.asMinutes();
-    }
   },
   detail: {
     type: String,

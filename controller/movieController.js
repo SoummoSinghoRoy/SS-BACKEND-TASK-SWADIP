@@ -61,7 +61,7 @@ exports.createMoviePostController = async (req, res) => {
     })
     await newMovie.save()
     res.status(200).json({
-      Message: "Movie added successfull",
+      Message: "Movie added successfully",
       newMovie
     })
   } catch (error) {
