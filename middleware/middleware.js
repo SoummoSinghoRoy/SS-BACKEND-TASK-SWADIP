@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const passport = require('./passport');
 
@@ -10,6 +11,7 @@ const middlewares = [
   express.json(),
   express.static('public'),
   cors(),
+  cookieParser(),
   passport.initialize()
 ]
 

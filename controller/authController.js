@@ -66,10 +66,10 @@ exports.loginPostController = async (req, res) => {
           email: user.email,
           role: user.role
         }, config.get('secret'), { expiresIn: "10h" })
-
+        res.cookie('jwt-token', token, { httpOnly: true, maxAge: 10 * 60 * 60 * 1000 });
         res.status(200).json({
           Message: "Successfully logged in",
-          token: `Bearer ${token}`
+          Auhtorization: true
         })
       })
     } else {

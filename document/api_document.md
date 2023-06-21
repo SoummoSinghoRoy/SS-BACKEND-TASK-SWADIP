@@ -70,13 +70,13 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 ```
 {
   "Message": "Successfully logged in",
-  "token": "Bearer <token>"
+  "Auhtorization": true
 }
 ```
 
 ### Request headers
 
-**Authorization:** `Bearer <token>`
+**Authorization:** `Not required`
 
 ### *Movie Endpoints*
 
@@ -149,7 +149,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 - **Endpoint: `"/api/movie/create"`**  
 - **Method:** POST
 - **Description:** Add new movie.
-- **Request headers:** Yes 
+- **Request headers:** No 
 - **Body parameters:**
   - **title** (string, required): Name of the movie.
   - **actor** (string, required): Name of the movie actor.
@@ -202,7 +202,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 - **Endpoint: `"/api/movie/edit/:movieId"`**  
 - **Method:** PUT
 - **Description:** Edit existing movie by movie id.
-- **Request headers:** Yes
+- **Request headers:** No
 - **Query parameters:**
   - **movieId**: `6492984ac5de9b9d2b17618f`
 - **Body parameters:**
@@ -255,7 +255,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 - **Endpoint: `"/api/movie/delete/:movieId"`**  
 - **Method:** DELETE
 - **Description:** Delete existing movie by movie id.
-- **Request headers:** Yes
+- **Request headers:** No
 - **Query parameters:**
   - **movieId**: `6492984ac5de9b9d2b17618f`
 - **Example response**
@@ -350,7 +350,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 - **Endpoint: `"/api/tvShows/create"`**  
 - **Method:** POST
 - **Description:** Add new tvshow.
-- **Request headers:** Yes 
+- **Request headers:** No 
 - **Body parameters:**
   - **title** (string, required): Name of the tvshow.
   - **actor** (string, required): Name of the tvshow actor.
@@ -403,7 +403,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 - **Endpoint: `"/api/tvShows/edit/:showId"`**  
 - **Method:** PUT
 - **Description:** Edit existing tvshow by show id.
-- **Request headers:** Yes
+- **Request headers:** No
 - **Query parameters:**
   - **showId**: `64929fb8d69ea780fd0fae41`
 - **Body parameters:**
@@ -456,7 +456,7 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 - **Endpoint: `"/api/tvShows/delete/:showId"`**  
 - **Method:** DELETE
 - **Description:** Delete existing tvshow bt show id.
-- **Request headers:** Yes
+- **Request headers:** No
 - **Query parameters:**
   - **showId**: `64929fb8d69ea780fd0fae41`
 - **Example response**

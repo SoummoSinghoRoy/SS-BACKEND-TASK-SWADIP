@@ -8,7 +8,6 @@ exports.allMovieGetController = async (req, res) => {
   const currentPage = parseInt(page) || 1;
   const itemsPerPage = parseInt(limit) || 10;
   const skip = (currentPage - 1) * itemsPerPage;
-
   try {
     const allmovies = await Movie.find().skip(skip).limit(itemsPerPage)
     const totalMovies = await Movie.countDocuments();
