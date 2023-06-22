@@ -500,4 +500,4 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 The Movie Listing App API allows users to manage movies and TV shows. It supports authentication, CRUD operations for movies and TV shows, and pagination.
 
 
-`*&copy; 2023 Swadip Singho Roy Soummo. All rights reserved.*`
+*`&copy; 2023 Swadip Singho Roy Soummo. All rights reserved.`*
