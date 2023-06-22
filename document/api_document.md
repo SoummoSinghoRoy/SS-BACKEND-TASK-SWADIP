@@ -1,4 +1,4 @@
-## *Movie Listing App API Documentation*
+## *Movie Listing App API service Documentation*
 
 ### Introduction
 
@@ -71,6 +71,21 @@ Welcome to the API documentation for the Movie Listing App. This API allows you 
 {
   "Message": "Successfully logged in",
   "Auhtorization": true
+}
+```
+
+> **logout**
+
+- **Endpoint: `"/api/auth/logout"`**  
+- **Method:** POST
+- **Description:** Logout from api service or server. 
+- **Example response**
+
+
+```
+{
+  "Message": "Successfully logged out",
+  "Auhtorization": false
 }
 ```
 

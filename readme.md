@@ -6,7 +6,7 @@ To install the movie listing app api service on your local machine, follow these
 2. Install Node.js, MongoDB and MongoDB Compass on your machine, if you haven't already. Or you can use `mongodb atlas`. And define your `custom environment variable` in `.env` file. Must Follow **`default.env`**
 3. Navigate to the project directory in your terminal.
 4. Run `npm install` to install the project dependencies.
-    > ***`Hurray`*** All dependency installed.
+    > ***`Hurray!`*** All dependency installed.
 5. Run `npm run dev` to start the server.
 
 That's it! The movie listing app api service should now be running on your local machine.
