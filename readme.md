@@ -16,6 +16,6 @@ That's it! The movie listing app api service should now be running on your local
 The Movie Listing App Api Service was developed using Node.js, Express.js and MongoDB. It allows users to create and manage movie and tvshow lists, This provides access to a vast database of movies and tvshows.
 
 > ### Api Service Information
-***url:*** [Api document](https://github.com/SoummoSinghoRoy/SS-BACKEND-TASK-SWADIP/blob/4325e34f2ee4581bbfe3e87c269a16e4c729656a/document/api_document.md)
+***url:*** [Api document](https://github.com/SoummoSinghoRoy/SS-BACKEND-TASK-SWADIP/blob/main/document/api_document.md)
 
 ### *Give it a try today!*
